@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "SpringRevive_Dark_Photo_Backgrounds_Updated",
+			"path": "../../SpringRevive_Dark_Photo_Backgrounds_Updated"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "SpringRevive_Dark_Photo_Backgrounds_Updated",
+		"liveServer.settings.port": 5501
+	}
+}

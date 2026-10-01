@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpringRevive AI — Tribal Water Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <!-- LOGIN -->
+  <section id="loginPage" class="login-page">
+    <div class="login-card">
+      <div class="brand-mark"></div>
+      <div class="eyebrow" data-i18n="eyebrow">AI + GIS WATER INTELLIGENCE</div>
+      <h1>Spring<span>Revive</span></h1>
+      <p class="login-subtitle" data-i18n="loginSubtitle">AI-Based Spring Revival & Recharge Planning for Tribal Areas</p>
+      <form id="loginForm">
+        <label data-i18n="Admin officer ID /User ID">Admin officer ID /User ID</label>
+        <input id="username" type="text" placeholder="Enter officer ID" data-placeholder="officerPlaceholder" required>
+        <label data-i18n="password">Password</label>
+        <input id="password" type="password" placeholder="Enter password" data-placeholder="passwordPlaceholder" required>
+        <button class="primary-btn full" type="submit" data-i18n="signIn">Sign in to dashboard →</button>
+      </form>
+      <div class="demo-login" data-i18n="demoLogin">Admin Officer Demo · ID: admin · Password: 1234</div>
+    </div>
+  </section>
+
+  <!-- APP -->
+  <section id="appPage" class="app hidden">
+    <aside class="sidebar">
+      <div class="side-brand">
+        <div class="mini-logo"></div>
+        <div><strong>SpringRevive</strong><small data-i18n="waterIntelligence">Spring & Water Intelligence</small></div>
+      </div>
+
+      <div class="scope-box">
+        <span class="scope-dot"></span>
+        <div><b data-i18n="fieldCommand">FIELD COMMAND</b><small data-i18n="liveMonitoring">Live monitoring active</small></div>
+      </div>
+
+      <nav>
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">⌂</span><span data-i18n="overview">Overview</span></button>
+        <button class="nav-item" data-page="monitoring"><span class="nav-icon">●</span><span data-i18n="villagesSprings">Villages & Springs</span></button>
+        <button class="nav-item" data-page="map"><span class="nav-icon">⌖</span><span data-i18n="satelliteMap">Satellite & GIS Map</span></button>
+        <button class="nav-item" data-page="analytics"><span class="nav-icon">☁</span><span data-i18n="rainfallClimate">Rainfall & Climate</span></button>
+        <button class="nav-item" data-page="recharge"><span class="nav-icon">⌁</span><span data-i18n="structuresPlanning">Structures & Planning</span></button>
+        <button class="nav-item" data-page="prediction"><span class="nav-icon">◈</span><span data-i18n="drainageFlow">Drainage & Flow AI</span></button>
+        <button class="nav-item" data-page="iot"><span class="nav-icon">◉</span><span data-i18n="iotMonitoring">IoT & Monitoring</span></button>
+        <button class="nav-item" data-page="weather"><span class="nav-icon">◒</span><span data-i18n="weatherRisk">Live Weather & Risk</span></button>
+        <button class="nav-item" data-page="alerts"><span class="nav-icon">!</span><span data-i18n="alerts">Alerts</span><em class="alert-count">06</em></button>
+        <button class="nav-item" data-page="digital"><span class="nav-icon">◇</span><span data-i18n="digitalTwin">Digital Twin</span></button>
+        <button class="nav-item" data-page="field"><span class="nav-icon">▣</span><span data-i18n="fieldApp">Field App</span></button>
+        <button class="nav-item" data-page="verification"><span class="nav-icon">✓</span><span data-i18n="verification">Structure Health & Verification</span></button>
+        <button class="nav-item" data-page="community"><span class="nav-icon">♧</span><span data-i18n="communityReports">Community Reports</span></button>
+        <button class="nav-item" data-page="cloud"><span class="nav-icon">☁</span><span data-i18n="cloudIntelligence">Cloud Intelligence</span></button>
+        <button class="nav-item" data-page="reports"><span class="nav-icon">▤</span><span data-i18n="reports">Reports</span></button>
+        <button class="nav-item" data-page="help"><span class="nav-icon">?</span><span data-i18n="help">Help / Guide</span></button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="demo-note" data-i18n="demoData">Demo dataset · live values are simulated for prototype</div>
+        <button id="logoutBtn" class="logout">↪ <span data-i18n="logout">Logout</span></button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="top-heading">
+          <div class="eyebrow" data-i18n="topEyebrow">TRIBAL WATER SECURITY</div>
+          <h2 id="pageTitle">Overview</h2>
+          <div class="breadcrumb"><span data-i18n="statewide">State-wide</span> <span>›</span> <span id="crumbPage">Overview</span></div>
+        </div>
+        <div class="top-actions">
+          <div class="search-box"><span>⌕</span><input id="globalSearch" type="search" placeholder="Search villages, springs..." data-placeholder="searchPlaceholder"></div>
+          <button class="icon-btn voice-toggle" id="voiceBtn" title="Voice OFF" aria-pressed="false">🎙<span class="voice-state">OFF</span></button>
+          <button class="icon-btn" id="speakBtn" title="Read current page aloud">🔊</button>
+          <button class="icon-btn" id="ccBtn" title="Voice captions">CC</button>
+          <select id="languageSelect" class="language-select" title="Language">
+            <option value="en">English</option>
+            <option value="ta">தமிழ்</option>
+            <option value="hi">हिन्दी</option>
+          </select>
+          <button class="icon-btn" id="helpBtn" title="Help">?</button><button class="icon-btn" id="settingsBtn" title="Settings">⚙</button>
+          <div class="profile-card">
+            <div class="avatar">RK</div>
+            <div><small data-i18n="adminOfficer">Admin Officer</small><b id="userName">Arun Kumar</b><span id="userLocation">Nilgiris District, Tamil Nadu</span></div>
+          </div>
+        </div>
+      </header>
+      <div id="voiceStatus" class="voice-status hidden"></div>
+      <div id="content"></div>
+    </main>
+  </section>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
